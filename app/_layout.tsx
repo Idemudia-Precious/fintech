@@ -10,6 +10,7 @@ import "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
@@ -129,8 +130,7 @@ const InitialLayout = () => {
 
 const RootLayout = () => {
   return (
-    <>
-      {" "}
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <ClerkProvider
         publishableKey={CLERK_PUBLISHABLE_KEY!}
         tokenCache={tokenCache}
@@ -138,7 +138,7 @@ const RootLayout = () => {
         <StatusBar style="light" />
         <InitialLayout />
       </ClerkProvider>
-    </>
+    </GestureHandlerRootView>
   );
 };
 
