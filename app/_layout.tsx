@@ -16,6 +16,7 @@ const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { View } from "react-native";
+import { UserInactivityProvider } from "@/context/UserInactivity";
 const queryClient = new QueryClient();
 
 export {
@@ -133,7 +134,7 @@ const InitialLayout = () => {
       <Stack.Screen
         name="(authenticated)/crypto/[id]"
         options={{
-          title: '',
+          title: "",
           headerLeft: () => (
             <TouchableOpacity onPress={router.back}>
               <Ionicons name="arrow-back" size={34} color={Colors.dark} />
@@ -142,9 +143,13 @@ const InitialLayout = () => {
           headerLargeTitle: true,
           headerTransparent: true,
           headerRight: () => (
-            <View style={{ flexDirection: 'row', gap: 10 }}>
+            <View style={{ flexDirection: "row", gap: 10 }}>
               <TouchableOpacity>
-                <Ionicons name="notifications-outline" color={Colors.dark} size={30} />
+                <Ionicons
+                  name="notifications-outline"
+                  color={Colors.dark}
+                  size={30}
+                />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Ionicons name="star-outline" color={Colors.dark} size={30} />
@@ -153,23 +158,30 @@ const InitialLayout = () => {
           ),
         }}
       />
+
+      <Stack.Screen
+        name="(authenticated)/(modals)/lock"
+        options={{ headerShown: false, animation: "none" }}
+      />
     </Stack>
   );
 };
 
 const RootLayout = () => {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ClerkProvider
-        publishableKey={CLERK_PUBLISHABLE_KEY!}
-        tokenCache={tokenCache}
-      >
-        <QueryClientProvider client={queryClient}>
-          <StatusBar style="light" />
-          <InitialLayout />
-        </QueryClientProvider>
-      </ClerkProvider>
-    </GestureHandlerRootView>
+    <ClerkProvider
+      publishableKey={CLERK_PUBLISHABLE_KEY!}
+      tokenCache={tokenCache}
+    >
+      <UserInactivityProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <QueryClientProvider client={queryClient}>
+            <StatusBar style="light" />
+            <InitialLayout />
+          </QueryClientProvider>
+        </GestureHandlerRootView>
+      </UserInactivityProvider>
+    </ClerkProvider>
   );
 };
 
