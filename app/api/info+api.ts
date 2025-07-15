@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   return Response.json(data);
 }
 
-const data = {
+ const data = {
   "1": {
     id: 1,
     name: "Bitcoin",
