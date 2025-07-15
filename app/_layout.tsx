@@ -10,9 +10,12 @@ import "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import { tokenCache } from "@clerk/clerk-expo/token-cache";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -43,7 +46,6 @@ const InitialLayout = () => {
   }, [loaded]);
 
   useEffect(() => {
-
     console.log("isSignedIn:", isSignedIn);
     if (!isLoaded) return;
 
@@ -122,8 +124,10 @@ const InitialLayout = () => {
         }}
       />
 
-      
-      <Stack.Screen name="(authenticated)/(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(authenticated)/(tabs)"
+        options={{ headerShown: false }}
+      />
     </Stack>
   );
 };
@@ -135,8 +139,10 @@ const RootLayout = () => {
         publishableKey={CLERK_PUBLISHABLE_KEY!}
         tokenCache={tokenCache}
       >
-        <StatusBar style="light" />
-        <InitialLayout />
+        <QueryClientProvider client={queryClient}>
+          <StatusBar style="light" />
+          <InitialLayout />
+        </QueryClientProvider>
       </ClerkProvider>
     </GestureHandlerRootView>
   );
