@@ -33,9 +33,10 @@ export const UserInactivityProvider = ({ children }: any) => {
       const startTime = startTimeStr ? parseInt(startTimeStr, 10) : 0;
       const elapsed = Date.now() - startTime;
       console.log("🚀 ~ handleAppStateChange ~ elapsed:", elapsed);
+      console.log(isSignedIn)
 
       if (elapsed > 3000 && isSignedIn) {
-        console.log("Redirecting to lock screen");
+        console.log("Redirecting to lock screen.");
         router.replace("/(authenticated)/(modals)/lock");
       }
     }
