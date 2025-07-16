@@ -14,7 +14,7 @@ const Layout = () => {
         tabBarBackground: () => (
           <BlurView
             intensity={100}
-            tint={'extraLight'}
+            tint={'light'}
             style={{
               flex: 1,
               backgroundColor: 'rgba(0,0,0,0.05)',

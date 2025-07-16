@@ -21,7 +21,7 @@ const CustomHeader = () => {
             backgroundColor: 'transparent',
           },
         ]}>
-        {/* <Link href={'/(authenticated)/(modals)/account'} asChild>
+        <Link href={'/(authenticated)/(modals)/account'} asChild>
           <TouchableOpacity
             style={{
               width: 40,
@@ -33,7 +33,7 @@ const CustomHeader = () => {
             }}>
             <Text style={{ color: '#fff', fontWeight: '500', fontSize: 16 }}>SG</Text>
           </TouchableOpacity>
-        </Link> */}
+        </Link>
         <View style={styles.searchSection}>
           <Ionicons style={styles.searchIcon} name="search" size={20} color={Colors.dark} />
           <TextInput style={styles.input} placeholder="Search" placeholderTextColor={Colors.dark} />

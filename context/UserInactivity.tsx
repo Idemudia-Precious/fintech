@@ -21,7 +21,7 @@ export const UserInactivityProvider = ({ children }: any) => {
   }, []);
 
   const handleAppStateChange = async (nextAppState: AppStateStatus) => {
-    //console.log("🚀 ~ handleAppStateChange ~ nextAppState", nextAppState);
+    console.log("🚀 ~ handleAppStateChange ~ nextAppState", nextAppState);
 
     if (nextAppState === "background") {
       await recordStartTime();
@@ -35,7 +35,7 @@ export const UserInactivityProvider = ({ children }: any) => {
       console.log("🚀 ~ handleAppStateChange ~ elapsed:", elapsed);
 
       if (elapsed > 3000 && isSignedIn) {
-        //console.log("Redirecting to lock screen");
+        console.log("Redirecting to lock screen");
         router.replace("/(authenticated)/(modals)/lock");
       }
     }

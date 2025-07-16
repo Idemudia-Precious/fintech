@@ -84,7 +84,7 @@ const Page = () => {
           </View>
         ))}
       </View>
-      <Text style={defaultStyles.sectionHeader}>Widgetss</Text>
+      <Text style={defaultStyles.sectionHeader}>Widgets</Text>
       <WidgetList />
     </ScrollView>
   );

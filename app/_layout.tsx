@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import { Link, Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -61,7 +61,11 @@ const InitialLayout = () => {
   }, [isSignedIn]);
 
   if (!loaded || !isLoaded) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
   }
 
   return (
@@ -162,6 +166,21 @@ const InitialLayout = () => {
       <Stack.Screen
         name="(authenticated)/(modals)/lock"
         options={{ headerShown: false, animation: "none" }}
+      />
+
+      <Stack.Screen
+        name="(authenticated)/(modals)/account"
+        options={{
+          //presentation: 'transparentModal',
+          animation: 'fade',
+          title: '',
+          headerTransparent: true,
+          headerLeft: () => (
+            <TouchableOpacity onPress={router.back}>
+              <Ionicons name="close-outline" size={34} color={'#fff'} />
+            </TouchableOpacity>
+          ),
+        }}
       />
     </Stack>
   );

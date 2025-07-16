@@ -51,7 +51,9 @@
     "react-native-web": "~0.20.0",
     "victory-native": "^41.17.4",
     "zeego": "^3.0.6",
-    "zustand": "^5.0.6"
+    "zustand": "^5.0.6",
+    "expo-local-authentication": "~16.0.5",
+    "expo-image-picker": "~16.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
